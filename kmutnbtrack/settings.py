@@ -51,6 +51,8 @@ INSTALLED_APPS = [
     'dbbackup',
     'anymail',
     'captcha',
+    'sass_processor',
+    'fontawesome-free',
 ]
 
 MIDDLEWARE = [
@@ -174,6 +176,15 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
+
+# Sass/SCSS
+SASS_PROCESSOR_ROOT = STATIC_ROOT
+
+STATICFILES_FINDERS = [
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    'sass_processor.finders.CssFinder',
+]
 
 # Mailgun api
 ANYMAIL = {

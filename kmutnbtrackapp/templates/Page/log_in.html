@@ -1,13 +1,30 @@
 {% extends 'Page/page_base.html' %}
 {% load static %}
+{% load sass_tags %}
 
 {% block title%}Login{% endblock %}
 {% block style %}
-<link rel="stylesheet" type="text/css" href="{% static '/css/log_in.css'%}">
+<link rel="stylesheet" type="text/css" href="{% sass_src 'scss/log_in.scss' %}">
 {% endblock %}
 
 {% block script %}
 <script type="text/javascript">
+    $('#wave-dark-blue').wavify({
+        height: 50,
+        bones: 3,
+        amplitude: 70,
+        color: '#1261A0',
+        speed: .15
+    });
+
+    $('#wave-blue').wavify({
+        height: 70,
+        bones: 3,
+        amplitude: 60,
+        color: '#459AE0',
+        speed: .25
+    });
+
     function Click_Sign_in_with_google() {
         location.href="{% url 'social:begin' 'google-oauth2' %}?next={{ lab_hash }}";
     }
@@ -37,68 +54,61 @@
 
 {% block content %}
 <!-- navbar LabTrack -->
-<nav class="navbar navbar-dark" style="background-color: #1261A0;">
-    <a class="navbar-brand" href="#">
-        <img src="{% static 'images/logo.png' %}" width="30" height="auto" class="d-inline-block" alt="" loading="lazy">
-        {{ lab_name }}
-    </a>
-</nav>
+<header>
+    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" class="wave">
+        <defs></defs><path id="wave-blue" d=""/>
+    </svg>
+    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" class="wave">
+        <defs></defs><path id="wave-dark-blue" d=""/>
+    </svg>
+
+    <div class="lab-name position-absolute float-right">
+        <a href="#">
+            <img src="{% static 'images/logo.png' %}" width="30" height="auto" class="d-inline-block" alt="" loading="lazy">
+            {{ lab_name }}
+        </a>
+    </div>
+</header>
 
 <!-- log in form -->
-<div class="container">
-    <div class="row">
-        <div class="col-md-10 mx-auto">
-            <div class="myform form">
-                <div class="logo mb-3" >
-                    <div class="col-md-12 text-center">
-                        <h1 style="margin-bottom: 0px">เข้าสู่ระบบ</h1>
-                    </div>
+<main>
+    <div class="container">
+        <div class="heading">
+            <h1>เข้าสู่ระบบ</h1>
+        </div>
+        <div class="card">
+            <div class="card-container">
+                <div class="form">
+                    <h2 class="title">สำหรับบุคลากรและนักศึกษา</h2>
+                    <h2 class="title">ภายในมหาวิทยาลัย</h2>
+                    <button onclick="Click_Sign_in_with_google()" class="google-btn">
+                        <i class="fab fa-google"></i>
+                        เข้าใช้งานด้วยบัญชี <b>KMUTNB</b>
+                    </button>
                 </div>
-                <div class="col-md-12 ">
-                    <div class="login-or" style="margin-top: 0px">
-                        <hr class="hr-or">
-                    </div>
-                </div>
-                <div class="col-md-12 text-center" >
-                        <h1 style="font-size: 18px">สำหรับบุคลากรและนักศึกษา</h1>
-                    <h1 style="font-size: 18px;margin-bottom: 0px;">ภายในมหาวิทยาลัย</h1>
-                    <br>
-                </div>
-
-                <div class="col-md-12 ">
-                    <p class="text-center" style="color:#FFFFFF";>
-                        <a onclick="Click_Sign_in_with_google()" class="google btn mybtn">
-                            <img id="google_img" src="{% static 'images/google.jpg' %}" alt="google_pic">
-                            เข้าใช้งานด้วยบัญชี <b>KMUTNB</b>
-                        </a>
-                    </p>
-                </div>
-                <div class="col-md-12 ">
-                    <div class="login-or">
-                        <hr class="hr-or">
-                        <span class="span-or">หรือ</span>
-                    </div>
-                </div>
-
-                <div class="col-md-12 text-center" >
-                        <h1 style="font-size: 18px">สำหรับบุคคลภายนอก</h1>
-                    </div>
-                <form action="{% url 'kmutnbtrackapp:login' %}?next={{ lab_hash }}" method="post" name="login" onsubmit="SaveTel()">
-                    {% csrf_token %}
-                    <input value="{{ lab_hash }}" name="next" hidden>
-                    <div class="form-group">
-                        <div style="text-align: center">
-
-                        <input type="tel" name="tel" class="form-control" id="tel" minlength="9" maxlength="10" onkeypress='validate(event)' required   aria-describedby="emailHelp" placeholder="กรุณากรอกหมายเลขโทรศัพท์">
-                    </div>
-                    <div class="col-md-12 text-center ">
-                        <button style="margin-top: 10px" type="submit" class="btn btn-block mybtn tx-tfm btn-login">
+                <div class="form">
+                    <h2 class="title">สำหรับบุคคลภายนอก</h2>
+                    <form action="{% url 'kmutnbtrackapp:login' %}?next={{ lab_hash }}" method="post" name="login" onsubmit="SaveTel()">
+                        {% csrf_token %}
+                        <input value="{{ lab_hash }}" name="next" hidden>
+                        <div class="form-outline">
+                            <input type="tel" name="tel" class="form-control" id="tel-input" minlength="9" maxlength="10" onkeypress='validate(event)'
+                            required aria-describedby="emailHelp" placeholder="กรุณากรอกหมายเลขโทรศัพท์">
+                        </div>
+                        <button type="submit" class="login-btn">
                             เข้าใช้งานด้วยหมายเลขโทรศัพท์
                         </button>
-                    </div>
-                </form>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
-</div>   
+</main>
+
+<footer>
+    <a href="{% url 'kmutnbtrackapp:home' %}">
+        <img src="{% static 'images/Logo_LabTrack.png' %}" alt="LabTrack-Logo">
+    </a>
+</footer>
+
 {% endblock %}

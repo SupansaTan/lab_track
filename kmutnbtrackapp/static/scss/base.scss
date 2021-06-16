@@ -1,0 +1,36 @@
+$font-stack: 'Poppins','Mitr',sans-serif;
+$dark-blue: #1261A0;
+$blue: #00A8FF;
+$grey: #d4d1d1;
+$bg-color: #fbfbfb;
+$shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+
+html, body {
+    height: 100%;
+    width: 100%;
+    background-color: $bg-color;
+    font-family: $font-stack;
+}
+
+/* responsive */
+@mixin breakpoint($class) {
+    @if $class == xs {
+      @media (max-width: 767px) { @content; }
+    }
+   
+    @else if $class == sm {
+      @media (min-width: 768px) { @content; }
+    }
+   
+    @else if $class == md {
+      @media (min-width: 992px) { @content; }
+    }
+   
+    @else if $class == lg {
+      @media (min-width: 1200px) { @content; }
+    }
+   
+    @else {
+      @warn "Breakpoint mixin supports: xs, sm, md, lg";
+    }
+}
