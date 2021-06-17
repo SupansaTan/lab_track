@@ -65,7 +65,7 @@ def lab_home_page(request, lab_hash):  # this function is used when user get in 
             last_lab_hist = last_lab_hist[0]
 
             if last_lab_hist.lab.hash == lab_hash:  # if latest lab is same as the going lab
-                return render(request, 'Page/check_out_before_due_new.html',
+                return render(request, 'Page/check_out_before_due.html',
                               {"last_lab": last_lab_hist.lab,
                                "check_in": last_lab_hist.checkin.astimezone(tz).strftime("%A, %d %b %Y, %H:%M"),
                                "check_out": last_lab_hist.checkout.astimezone(tz).strftime("%A, %d %b %Y, %H:%M")})
@@ -82,7 +82,7 @@ def lab_home_page(request, lab_hash):  # this function is used when user get in 
             lab_exceeded_limit = False
             if current_people >= this_lab.max_number_of_people:
                 lab_exceeded_limit = True
-            return render(request, 'Page/lab_checkin_new.html', {"lab_name": this_lab.name,
+            return render(request, 'Page/lab_checkin.html', {"lab_name": this_lab.name,
                                                                  "lab_hash": this_lab.hash,
                                                                  "time_option": time_option,
                                                                  "time_now_hour": now_datetime.hour,
@@ -181,7 +181,7 @@ def check_in(request, lab_hash):  # when user checkin record in history
                 else:  # if latest lab is same as the going lab
                     last_lab_hist = History.objects.get(person=person, lab=this_lab, checkin__lte=now_datetime,
                                                         checkout__gte=now_datetime)
-                    return render(request, 'Page/check_out_before_due_new.html',
+                    return render(request, 'Page/check_out_before_due.html',
                                   {"last_lab": last_lab_hist.lab,
                                    "check_in": last_lab_hist.checkin.astimezone(tz).strftime("%A, %d %b %Y, %H:%M"),
                                    "check_out": last_lab_hist.checkout.astimezone(tz).strftime("%A, %d %b %Y, %H:%M")})
@@ -198,7 +198,7 @@ def check_in(request, lab_hash):  # when user checkin record in history
                     new_hist.exceeded_limit = True
                     new_hist.save()
                 if person.ask_feedback is False:
-                    return render(request, 'Page/lab_checkin_successful_new.html',
+                    return render(request, 'Page/lab_checkin_successful.html',
                                   {"lab_hash": this_lab.hash,
                                    "lab_name": this_lab.name,
                                    "exceeded_limit": new_hist.exceeded_limit,
@@ -206,7 +206,7 @@ def check_in(request, lab_hash):  # when user checkin record in history
                                    "check_in": new_hist.checkin.astimezone(tz).strftime("%A, %d %b %Y, %H:%M"),
                                    "check_out": new_hist.checkout.astimezone(tz).strftime("%A, %d %b %Y, %H:%M"),
                                    "show_ask_feedback": True})
-                return render(request, 'Page/lab_checkin_successful_new.html',
+                return render(request, 'Page/lab_checkin_successful.html',
                               {"lab_hash": this_lab.hash,
                                "lab_name": this_lab.name,
                                "exceeded_limit": new_hist.exceeded_limit,
