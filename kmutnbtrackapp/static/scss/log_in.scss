@@ -72,10 +72,11 @@ html, body {
     position: fixed;
     top: 20px;
     right: 20px;
+    border: none;
     border-radius: 50px;
     box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, 
     rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
-    background-color: #ffffff27;
+    background-color: rgba(255, 255, 255, 0.17);
 
     a {
         color: white;
@@ -238,7 +239,7 @@ main {
 footer {
     position: fixed;
     left: 0;
-    bottom: 10px;
+    bottom: 0.5rem;
     width: 100%;
 
     img {

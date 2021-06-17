@@ -1,13 +1,30 @@
 {% extends 'Page/page_base.html' %}
 {% load static %}
+{% load sass_tags %}
 
 {% block title%}Login{% endblock %}
 {% block style %}
-<link rel="stylesheet" type="text/css" href="{% static '/css/signup_form.css'%}">
+<link rel="stylesheet" type="text/css" href="{% sass_src 'scss/signup_form.scss' %}">
 {% endblock %}
 
 {% block script %}
 <script type="text/javascript">
+    $('#wave-dark-blue').wavify({
+        height: 50,
+        bones: 5,
+        amplitude: 40,
+        color: '#1261A0',
+        speed: .25
+    });
+
+    $('#wave-blue').wavify({
+        height: 50,
+        bones: 3,
+        amplitude: 50,
+        color: '#459AE0',
+        speed: .15
+    });
+
     $(document).ready(function () {
         if (sessionStorage.getItem("tel")) {
             const phoneNumber = sessionStorage.getItem('tel')
@@ -15,61 +32,82 @@
             telInput.value = phoneNumber
         }
         else{
-            $("form").prepend("<p style='color:#FF0000;'>กรุณาสแกน QR Code ใหม่อีกครั้ง</p>");
+            $(".title-under").after(
+                `<div class="text-warning text-center">
+                    <p>กรุณาสแกน QR Code ใหม่อีกครั้ง</p>
+                </div>`
+            );
             $("#submit").prop("disabled", true);
         }
     })
 </script>
 {% endblock %}
 {% block content %}
-<!-- navbar LabTrack -->
-<nav class="navbar navbar-dark" style="background-color: #1261A0;">
-    <a class="navbar-brand" href="#">
-        <img src="{% static 'images/logo.png' %}" width="30" height="auto" class="d-inline-block" alt="" loading="lazy">
-        {{ lab_name }}
-    </a>
-</nav>
+<!-- lab name & wave svg -->
+<header>
+    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" class="wave wave-blue">
+        <defs></defs><path id="wave-blue" d=""/>
+    </svg>
+    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" class="wave wave-darkblue">
+        <defs></defs><path id="wave-dark-blue" d=""/>
+    </svg>
 
-<!-- log in form -->
-<div class="container">
-    <div class="row">
-        <div class="col-md-10 mx-auto">
-        <div id="first">
-            <div class="myform form ">
-                <div class="logo mb-3">
-                    <div class="col-md-12 text-center">
-                        <h1>เข้าใช้งานครั้งแรก</h1>
-                    </div> 
-                    <div class="text-center">
-                        <p>สำหรับการเข้าใช้งานครั้งแรก<br>กรุณาระบุชื่อ - นามสกุล ก่อนเข้าใช้งาน</p>
-                    </div> 
-                </div>
-                {% if wrong == 2 %} 
-                <div class="col-md-12 text-center">
-                    <p style="color:red">หมายเลขโทรศัพท์นี้ถูกใช้งานแล้ว<br>กรุณาสแกน QR Code ใหม่อีกครั้ง</p>
-                </div>
-                {% endif %}
-                <form action="{% url 'kmutnbtrackapp:signup' lab_hash=lab_hash %}" method="POST" enctype="multipart/form-data">
-                    {% csrf_token %}
-                    <div class="form-group">
+    <div class="lab-name position-absolute float-right">
+        <a href="#">
+            <img src="{% static 'images/logo.png' %}" width="30" height="auto" class="d-inline-block" alt="" loading="lazy">
+            {{ lab_name }}
+        </a>
+    </div>
+</header>
+
+<!-- sign up form -->
+<main>
+    <div class="container">
+        <div class="heading">
+            <h1>เข้าใช้งานครั้งแรก</h1>
+        </div>
+        <form action="{% url 'kmutnbtrackapp:signup' lab_hash=lab_hash %}" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        <div class="card">
+            <div class="card-container">
+                <div class="form">
+                    <h2 class="title">สำหรับการเข้าใช้งานครั้งแรก</h2>
+                    <h2 class="title-under">กรุณาระบุชื่อ - นามสกุล ก่อนเข้าใช้งาน</h2>
+                    
+                    {% if wrong == 2 %} 
+                    <div class="text-warning text-center">
+                        <p>หมายเลขโทรศัพท์นี้ถูกใช้งานแล้ว<br>กรุณาสแกน QR Code ใหม่อีกครั้ง</p>
+                    </div>
+                    {% endif %}
+                    
+                    <div class="form-outline">
                         <label for="first_name">ชื่อ</label>
                         <input required type="text" class="form-control" name="first_name" id="name" placeholder="สมหมาย">
                     </div>
-                    <div class="form-group">
+                    <div class="form-outline">
                         <label for="last_name">นามสกุล</label>
                         <input required type="text" class="form-control" name="last_name" id="surname" placeholder="รักเรียน">
                     </div>
-                    <div class="form-group">
+                    <div class="form-outline">
                         <label for="telInput">หมายเลขโทรศัพท์</label>
                         <input readonly id="telInput" type="text" name="tel" class="form-control" aria-describedby="emailHelp" value="">
                     </div>
-                    <div class="col-md-12 text-center ">
-                        <button type="submit" id="submit" class="btn btn-block mybtn btn-primary tx-tfm btn-signup">ลงทะเบียน</button>
-                    </div>
-                </form>
+                </div>
             </div>
         </div>
+        <div class="btn-container">
+            <button type="submit" id="submit" class="signup-btn">ลงทะเบียน</button>
         </div>
+
+        </form>
     </div>
-</div>
+</main>
+
+<footer>
+    <a href="{% url 'kmutnbtrackapp:home' %}">
+        <img src="{% static 'images/Logo_LabTrack.png' %}" alt="LabTrack-Logo">
+    </a>
+</footer>
+
 {% endblock %}

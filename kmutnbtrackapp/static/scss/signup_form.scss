@@ -1,1 +1,100 @@
 @import 'log_in';
+
+/* heading */
+.heading {
+    h1 {
+        font-size: 2.2rem;
+
+        @include breakpoint(xs) {
+            font-size: 1.8rem;
+        }
+    }
+}
+
+/* signup form */
+.form {
+    h2 {
+        @extend .title;
+        font-size: 1.2rem;
+
+        @include breakpoint(xs) {
+            font-size: 1rem;
+        }
+    }
+
+    .text-warning {
+        margin: 0.5rem 0 0.5rem 0;
+        border-radius: 15px;
+        background-color: $light-red;
+
+        p {
+            color: #ff3232;
+            padding: 0.5rem 0 0.5rem 0;
+            font-size: 1rem;
+        }
+    }
+
+    .form-outline {
+        margin: 1rem 0 1rem 0;
+
+        label {
+            color: $dark-blue;
+            font-size: 1.1rem;
+        }
+
+        input[type=text] {
+            border-radius: 50px;
+            box-shadow: $shadow;
+            font-family: $font-stack;
+
+            &:valid {
+                color: $dark-blue;
+            }
+
+            &#telInput {
+                color: $dark-grey;
+                border: none;
+                box-shadow: none;
+                background-color: #f0f0f0;
+            }
+        }
+
+        .form-control:focus {
+            color: $dark-blue;
+            border-color: inherit;
+            border: 1px solid $dark-blue;
+
+            &#telInput {
+                border: none;
+            }
+        }
+    }
+}
+
+/* submit button */
+.btn-container {
+    display: table;
+    margin: 0.5rem auto 0 auto;
+
+    .signup-btn {
+        @extend %button;
+        width: 90vw;
+        background-color: $blue;
+
+        &:hover {
+            background-color: darken($blue,5%);
+        }
+
+        &:focus {
+            outline: none;
+        }
+    
+        @include breakpoint(sm) {
+            max-width: 70vw;
+        }
+    
+        @include breakpoint(md) {
+            max-width: 50vw;
+        }
+    }
+}
