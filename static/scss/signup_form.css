@@ -1,8 +1,11 @@
 html, body {
-  height: 100%;
   width: 100%;
+  height: 100%;
   background-color: #fbfbfb;
   font-family: "Poppins", "Mitr", sans-serif; }
+
+body {
+  overflow-x: hidden; }
 
 /* responsive */
 .btn-container .signup-btn, .form .login-btn, .form .google-btn {
@@ -16,6 +19,8 @@ html, body {
   text-align: center;
   font-size: 1.4rem;
   font-family: "Poppins", "Mitr", sans-serif; }
+  .btn-container .signup-btn:focus, .form .login-btn:focus, .form .google-btn:focus {
+    outline: none; }
   @media (max-width: 767px) {
     .btn-container .signup-btn, .form .login-btn, .form .google-btn {
       font-size: 0.9rem; } }
@@ -57,7 +62,7 @@ html, body {
         top: -40%; } }
 .lab-name {
   padding: 10px 20px 10px 20px;
-  position: fixed;
+  position: relative;
   top: 20px;
   right: 20px;
   border: none;
@@ -79,9 +84,10 @@ html, body {
 /* form container */
 main {
   display: table;
-  position: absolute;
+  position: relative;
   top: 0;
   left: 0;
+  margin-top: 0.5rem;
   height: 100%;
   width: 100%; }
 
@@ -147,6 +153,8 @@ main {
         font-size: 1.8rem; } }
   .form .google-btn {
     background-color: #1261A0; }
+    .form .google-btn:hover {
+      background-color: #0f5389; }
     .form .google-btn i {
       margin-right: 5px; }
   .form input[type=tel] {
@@ -175,12 +183,15 @@ main {
     border-bottom: 1px solid #1261A0; }
   .form .login-btn {
     background-color: #00A8FF; }
+    .form .login-btn:hover {
+      background-color: #0097e6; }
 
 /* footer */
 footer {
-  position: fixed;
+  position: relative;
   left: 0;
-  bottom: 0.5rem;
+  bottom: 0;
+  margin-top: 1rem;
   width: 100%; }
   footer img {
     display: block;
@@ -191,7 +202,7 @@ footer {
         height: 30px; } }
 /* heading */
 .heading h1 {
-  font-size: 2.2rem; }
+  font-size: 2.5rem; }
   @media (max-width: 767px) {
     .heading h1 {
       font-size: 1.8rem; } }
@@ -200,7 +211,10 @@ footer {
   font-size: 1.2rem; }
   @media (max-width: 767px) {
     .form h2 {
-      font-size: 1rem; } }
+      font-size: 0.9rem; } }
+  @media (min-width: 992px) {
+    .form h2 {
+      font-size: 1.5rem; } }
 .form .text-warning {
   margin: 0.5rem 0 0.5rem 0;
   border-radius: 15px;
@@ -209,16 +223,30 @@ footer {
     color: #ff3232;
     padding: 0.5rem 0 0.5rem 0;
     font-size: 1rem; }
-
+    @media (max-width: 767px) {
+      .form .text-warning p {
+        font-size: 0.9rem; } }
+    @media (min-width: 768px) {
+      .form .text-warning p {
+        font-size: 1.2rem; } }
+    @media (min-width: 992px) {
+      .form .text-warning p {
+        font-size: 1.5rem; } }
 .form .form-outline {
   margin: 1rem 0 1rem 0; }
   .form .form-outline label {
     color: #1261A0;
     font-size: 1.1rem; }
+    @media (min-width: 992px) {
+      .form .form-outline label {
+        font-size: 1.5rem; } }
   .form .form-outline input[type=text] {
     border-radius: 50px;
     box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
     font-family: "Poppins", "Mitr", sans-serif; }
+    @media (min-width: 992px) {
+      .form .form-outline input[type=text] {
+        font-size: 1.4rem; } }
     .form .form-outline input[type=text]:valid {
       color: #1261A0; }
     .form .form-outline input[type=text]#telInput {
@@ -239,6 +267,7 @@ footer {
   margin: 0.5rem auto 0 auto; }
   .btn-container .signup-btn {
     width: 90vw;
+    font-size: 1.3rem;
     background-color: #00A8FF; }
     .btn-container .signup-btn:hover {
       background-color: #0097e6; }
@@ -249,6 +278,35 @@ footer {
         max-width: 70vw; } }
     @media (min-width: 992px) {
       .btn-container .signup-btn {
-        max-width: 50vw; } }
+        max-width: 50vw;
+        font-size: 1.5rem; } }
+    @media (min-width: 1200px) {
+      .btn-container .signup-btn {
+        max-width: 30vw; } }
+/* scroll button */
+.scroll-btn {
+  position: fixed;
+  right: 1rem;
+  bottom: 1rem;
+  padding: 10px;
+  width: 46px;
+  height: 46px;
+  border-radius: 50px;
+  background-color: #1261A0; }
+  .scroll-btn:hover {
+    outline: none; }
+  .scroll-btn span {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    content: '';
+    width: 16px;
+    height: 16px;
+    margin: -12px 0 0 -8px;
+    border-left: 1px solid #fff;
+    border-bottom: 1px solid #fff;
+    -webkit-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+    box-sizing: border-box; }
 
 /*# sourceMappingURL=signup_form.css.map */

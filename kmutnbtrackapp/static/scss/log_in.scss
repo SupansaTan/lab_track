@@ -13,6 +13,10 @@
     font-size: 1.4rem;
     font-family: $font-stack;
 
+    &:focus {
+        outline: none;
+    }
+
     @include breakpoint(xs) {
         font-size: 0.9rem;
     }
@@ -69,7 +73,7 @@ html, body {
 
 .lab-name {
     padding: 10px 20px 10px 20px;
-    position: fixed;
+    position: relative;
     top: 20px;
     right: 20px;
     border: none;
@@ -98,9 +102,10 @@ html, body {
 /* form container */
 main {
     display: table;
-    position: absolute;
+    position: relative;
     top: 0;
     left: 0;
+    margin-top: 0.5rem;
     height: 100%;
     width: 100%;
 }
@@ -192,6 +197,10 @@ main {
         @extend %button;
         background-color: $dark-blue;
 
+        &:hover {
+            background-color: darken($dark-blue,5%);
+        }
+
         i {
             margin-right: 5px;
         }
@@ -232,14 +241,19 @@ main {
     .login-btn {
         @extend %button;
         background-color: $blue;
+
+        &:hover {
+            background-color: darken($blue,5%);
+        }
     }
 }
 
 /* footer */
 footer {
-    position: fixed;
+    position: relative;
     left: 0;
-    bottom: 0.5rem;
+    bottom: 0;
+    margin-top: 1rem;
     width: 100%;
 
     img {

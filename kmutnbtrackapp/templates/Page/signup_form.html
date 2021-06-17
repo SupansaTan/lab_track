@@ -8,40 +8,9 @@
 {% endblock %}
 
 {% block script %}
-<script type="text/javascript">
-    $('#wave-dark-blue').wavify({
-        height: 50,
-        bones: 5,
-        amplitude: 40,
-        color: '#1261A0',
-        speed: .25
-    });
-
-    $('#wave-blue').wavify({
-        height: 50,
-        bones: 3,
-        amplitude: 50,
-        color: '#459AE0',
-        speed: .15
-    });
-
-    $(document).ready(function () {
-        if (sessionStorage.getItem("tel")) {
-            const phoneNumber = sessionStorage.getItem('tel')
-            let telInput = document.getElementById("telInput")
-            telInput.value = phoneNumber
-        }
-        else{
-            $(".title-under").after(
-                `<div class="text-warning text-center">
-                    <p>กรุณาสแกน QR Code ใหม่อีกครั้ง</p>
-                </div>`
-            );
-            $("#submit").prop("disabled", true);
-        }
-    })
-</script>
+<script src="{% static 'js/signup_form.js' %}"></script>
 {% endblock %}
+
 {% block content %}
 <!-- lab name & wave svg -->
 <header>

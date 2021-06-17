@@ -16,6 +16,8 @@ html, body {
   text-align: center;
   font-size: 1.4rem;
   font-family: "Poppins", "Mitr", sans-serif; }
+  .form .login-btn:focus, .form .google-btn:focus {
+    outline: none; }
   @media (max-width: 767px) {
     .form .login-btn, .form .google-btn {
       font-size: 0.9rem; } }
@@ -60,9 +62,10 @@ html, body {
   position: fixed;
   top: 20px;
   right: 20px;
+  border: none;
   border-radius: 50px;
   box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
-  background-color: #ffffff27; }
+  background-color: rgba(255, 255, 255, 0.17); }
   .lab-name a {
     color: white;
     cursor: pointer;
@@ -146,6 +149,8 @@ main {
         font-size: 1.8rem; } }
   .form .google-btn {
     background-color: #1261A0; }
+    .form .google-btn:hover {
+      background-color: #0f5389; }
     .form .google-btn i {
       margin-right: 5px; }
   .form input[type=tel] {
@@ -174,12 +179,14 @@ main {
     border-bottom: 1px solid #1261A0; }
   .form .login-btn {
     background-color: #00A8FF; }
+    .form .login-btn:hover {
+      background-color: #0097e6; }
 
 /* footer */
 footer {
   position: fixed;
   left: 0;
-  bottom: 10px;
+  bottom: 0.5rem;
   width: 100%; }
   footer img {
     display: block;

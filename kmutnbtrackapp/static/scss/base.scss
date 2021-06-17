@@ -8,10 +8,14 @@ $bg-color: #fbfbfb;
 $shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 
 html, body {
-    height: 100%;
-    width: 100%;
-    background-color: $bg-color;
-    font-family: $font-stack;
+  width: 100%;
+  height: 100%;
+  background-color: $bg-color;
+  font-family: $font-stack;
+}
+
+body {
+  overflow-x: hidden;
 }
 
 /* responsive */

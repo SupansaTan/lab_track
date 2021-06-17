@@ -3,7 +3,7 @@
 /* heading */
 .heading {
     h1 {
-        font-size: 2.2rem;
+        font-size: 2.5rem;
 
         @include breakpoint(xs) {
             font-size: 1.8rem;
@@ -18,7 +18,11 @@
         font-size: 1.2rem;
 
         @include breakpoint(xs) {
-            font-size: 1rem;
+            font-size: 0.9rem;
+        }
+
+        @include breakpoint(md) {
+            font-size: 1.5rem;
         }
     }
 
@@ -31,6 +35,18 @@
             color: #ff3232;
             padding: 0.5rem 0 0.5rem 0;
             font-size: 1rem;
+
+            @include breakpoint(xs) {
+                font-size: 0.9rem;
+            }
+
+            @include breakpoint(sm) {
+                font-size: 1.2rem;
+            }
+
+            @include breakpoint(md) {
+                font-size: 1.5rem;
+            }
         }
     }
 
@@ -40,12 +56,20 @@
         label {
             color: $dark-blue;
             font-size: 1.1rem;
+
+            @include breakpoint(md) {
+                font-size: 1.5rem;
+            }
         }
 
         input[type=text] {
             border-radius: 50px;
             box-shadow: $shadow;
             font-family: $font-stack;
+
+            @include breakpoint(md) {
+                font-size: 1.4rem;
+            }
 
             &:valid {
                 color: $dark-blue;
@@ -79,6 +103,7 @@
     .signup-btn {
         @extend %button;
         width: 90vw;
+        font-size: 1.3rem;
         background-color: $blue;
 
         &:hover {
@@ -95,6 +120,42 @@
     
         @include breakpoint(md) {
             max-width: 50vw;
+            font-size: 1.5rem;
         }
+
+        @include breakpoint(lg) {
+            max-width: 30vw;
+        }
+    }
+}
+
+/* scroll button */
+.scroll-btn {
+    position: fixed;
+    right: 1rem;
+    bottom: 1rem;
+    padding: 10px;
+    width: 46px;
+    height: 46px;
+    border-radius: 50px;
+    background-color: $dark-blue;
+
+    &:hover {
+        outline: none;
+    }
+
+    span {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        content: '';
+        width: 16px;
+        height: 16px;
+        margin: -12px 0 0 -8px;
+        border-left: 1px solid #fff;
+        border-bottom: 1px solid #fff;
+        -webkit-transform: rotate(-45deg);
+        transform: rotate(-45deg);
+        box-sizing: border-box;
     }
 }
