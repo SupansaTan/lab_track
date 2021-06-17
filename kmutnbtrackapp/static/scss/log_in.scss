@@ -24,16 +24,46 @@ html, body {
 }
 
 /* header */
-svg {
-    height: 50vh;
+.wave {
+    height: 70vh;
     width: 100%;
-    transform: rotate(170deg) scale(1.5);
     position: absolute;
     top: -15%;
     left: 0;
 
     @include breakpoint(xs) {
-        height: 60vh;
+        height: 55vh;
+    }
+    @include breakpoint(sm) {
+        height: 50vh;
+    }
+    @include breakpoint(md) {
+        height: 55vh;
+    }
+
+
+    &-darkblue {
+        @extend .wave;
+        left: -10%;
+        transform: rotate(155deg) scale(1.5);
+
+        @include breakpoint(lg) {
+            top: -25%;
+        }
+    }
+
+    &-blue {
+        @extend .wave;
+        top: -20%;
+        height: 50vh;
+        transform: rotate(-160deg) scale(1.5);
+
+        @include breakpoint(sm) {
+            height: 45vh;
+        }
+        @include breakpoint(lg) {
+            top: -40%;
+        }
     }
 }
 
@@ -83,6 +113,7 @@ main {
         color: #fff;
         font-size: 2rem;
         font-weight: 400;
+        text-shadow: 3px 5px rgba(0, 0, 0, 0.16);
         margin: 10px 0 10px 10px;
 
         @include breakpoint(xs) {

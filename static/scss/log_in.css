@@ -24,16 +24,37 @@ html, body {
   padding-bottom: 40px; }
 
 /* header */
-svg {
-  height: 50vh;
+.wave, .wave-blue, .wave-darkblue {
+  height: 70vh;
   width: 100%;
-  transform: rotate(170deg) scale(1.5);
   position: absolute;
   top: -15%;
   left: 0; }
   @media (max-width: 767px) {
-    svg {
-      height: 60vh; } }
+    .wave, .wave-blue, .wave-darkblue {
+      height: 55vh; } }
+  @media (min-width: 768px) {
+    .wave, .wave-blue, .wave-darkblue {
+      height: 50vh; } }
+  @media (min-width: 992px) {
+    .wave, .wave-blue, .wave-darkblue {
+      height: 55vh; } }
+  .wave-darkblue {
+    left: -10%;
+    transform: rotate(155deg) scale(1.5); }
+    @media (min-width: 1200px) {
+      .wave-darkblue {
+        top: -25%; } }
+  .wave-blue {
+    top: -20%;
+    height: 50vh;
+    transform: rotate(-160deg) scale(1.5); }
+    @media (min-width: 768px) {
+      .wave-blue {
+        height: 45vh; } }
+    @media (min-width: 1200px) {
+      .wave-blue {
+        top: -40%; } }
 .lab-name {
   padding: 10px 20px 10px 20px;
   position: fixed;
@@ -71,6 +92,7 @@ main {
     color: #fff;
     font-size: 2rem;
     font-weight: 400;
+    text-shadow: 3px 5px rgba(0, 0, 0, 0.16);
     margin: 10px 0 10px 10px; }
     @media (max-width: 767px) {
       .container .heading {

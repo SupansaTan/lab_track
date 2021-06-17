@@ -11,18 +11,18 @@
 <script type="text/javascript">
     $('#wave-dark-blue').wavify({
         height: 50,
-        bones: 3,
-        amplitude: 70,
+        bones: 5,
+        amplitude: 40,
         color: '#1261A0',
-        speed: .15
+        speed: .25
     });
 
     $('#wave-blue').wavify({
-        height: 70,
+        height: 50,
         bones: 3,
-        amplitude: 60,
+        amplitude: 50,
         color: '#459AE0',
-        speed: .25
+        speed: .15
     });
 
     function Click_Sign_in_with_google() {
@@ -55,10 +55,10 @@
 {% block content %}
 <!-- navbar LabTrack -->
 <header>
-    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" class="wave">
+    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" class="wave wave-blue">
         <defs></defs><path id="wave-blue" d=""/>
     </svg>
-    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" class="wave">
+    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" class="wave wave-darkblue">
         <defs></defs><path id="wave-dark-blue" d=""/>
     </svg>
 
@@ -92,7 +92,7 @@
                         {% csrf_token %}
                         <input value="{{ lab_hash }}" name="next" hidden>
                         <div class="form-outline">
-                            <input type="tel" name="tel" class="form-control" id="tel-input" minlength="9" maxlength="10" onkeypress='validate(event)'
+                            <input type="tel" name="tel" class="form-control" id="tel" minlength="9" maxlength="10" onkeypress='validate(event)'
                             required aria-describedby="emailHelp" placeholder="กรุณากรอกหมายเลขโทรศัพท์">
                         </div>
                         <button type="submit" class="login-btn">
