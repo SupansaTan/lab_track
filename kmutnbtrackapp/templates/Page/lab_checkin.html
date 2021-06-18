@@ -1,38 +1,26 @@
 {% extends 'Page/page_base.html' %}
 {% load static %}
+{% load sass_tags %}
 
 {% block title %}Check in{% endblock %}
 
-
 {% block style %}
-<link rel="stylesheet" type="text/css" href="{% static '/css/lab_checkin.css'%}">
+<link rel="stylesheet" type="text/css" href="{% sass_src 'scss/lab_checkin.scss' %}">
 {% endblock %}
 
 
 {% block script %}
+<script src="{% static 'js/lab_checkin.js' %}"></script>
 <script type="text/javascript">
     let csrf_token = '{{csrf_token}}'; // Django will render this, don't move to .js file !!!
     const checkin_url = "{% url 'kmutnbtrackapp:check_in' lab_hash  %}";
     const checkout_url = "{% url 'kmutnbtrackapp:check_out' lab_hash  %}";
 
-    selectTime();
-    
-    function selectTime(){
-        const Mode = document.getElementById('time').value;
-        const time_selector = document.getElementById('time_value');
-        if ( Mode == "others" ){
-            time_selector.style.display='block';
-        } else {
-            time_selector.style.display='none';
-            time_selector.value = Mode
-        }
-    }
-
     function CheckTime(hour, minute){
-        const UserMode = document.getElementById('time').value;
+        const UserMode = $('#TimeForm :checkbox').value;
         const UserTime = document.getElementById('time_value');
         let SelectTime = UserTime.value.split(":");
-        console.log()
+        
         if (UserMode == "others"){
             if (true) {
                 // waiting for beautiful time lock condition
@@ -122,29 +110,38 @@
 
 
 {% block content %}
-<!-- navbar room name -->
-<nav class="navbar navbar-dark" style="background-color: #1261A0;">
-    <a class="navbar-brand" href="#">
-        <img src="{% static 'images/logo.png' %}" width="30" height="auto" class="d-inline-block" alt="" loading="lazy">
-        {{ lab_name }}
-    </a>
-    <div class="btn-group btn-username">
-        <button type="button" class="btn dropdown-toggle dropdown-user" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <img src="{% static 'images/people.png' %}" width="22" alt="username_pic" >
-        </button>
-        <div class="dropdown-menu dropdown-menu-right">
-            <button class="dropdown-item disabled" type="button">{{ request.user.first_name }}</button>
-            <a href="{% url 'kmutnbtrackapp:logout' %}?lab={{ lab_hash }}">
-                <button class="dropdown-item" type="button">
-                    <img id="checkout_img" src="{% static 'images/logout.png' %}" alt="checkout_pic">
-                    ออกจากระบบ
-                </button>
-            </a>
-        </div>
+<!-- username dropdown -->
+<header>
+    <div class="username position-relative float-right">
+        <a class="dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <div class="avatar">
+                <svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg" width="80" height="80">
+                    <mask id="mask__beam" maskUnits="userSpaceOnUse" x="0" y="0" width="36" height="36">
+                        <rect width="36" height="36" rx="72" fill="white"></rect>
+                    </mask>
+                    <g mask="url(#mask__beam)">
+                        <rect width="36" height="36" fill="#ceecef"></rect>
+                        <rect x="0" y="0" width="36" height="36" transform="translate(-2 -2) rotate(186 18 18) scale(1)" fill="#ffc52c" rx="36"></rect>
+                        <g transform="translate(-2 -2) rotate(6 18 18)">
+                            <path d="M15 19c2 1 4 1 6 0" stroke="black" fill="none" stroke-linecap="round"></path>
+                            <rect x="13" y="14" width="1.5" height="2" rx="1" stroke="none" fill="black"></rect>
+                            <rect x="21" y="14" width="1.5" height="2" rx="1" stroke="none" fill="black"></rect>
+                        </g>
+                    </g>
+                </svg>
+                <span>{{ request.user.first_name }}</span>
+                <i class="fas fa-chevron-down"></i>
+            </div>
+        </a>
+        <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <li class="dropdown-item">
+                <a href="{% url 'kmutnbtrackapp:logout' %}?lab={{ lab_hash }}" class="nav-link">ออกจากระบบ</a>
+            </li>
+        </ul>
     </div>
-</nav>
+</header>
 
-<!-- check out before due -->
+<!-- exceeded limit -->
 {% if lab_exceeded_limit %}
     <div class="container" style="text-align: center;">
         <div class="alert alert-danger" role="alert">
@@ -154,67 +151,70 @@
         </div>
     </div>
 {% endif %}
-<div class="container">
-    <div class="card w-70 mx-auto" style="text-align: center;">
-        <div class="card-body">
-            <p class="card-text amount-people">
-                สวัสดี, {{ request.user.first_name }}
-            </p>
-            <h5 class="card-title room-name">
-                <img src="{% static 'images/logo.png' %}"  width="40" alt="lab_pic">
-                {{ lab_name }}
-            </h5>
-            <p class="card-text amount-people">
-                <img src="{% static 'images/people.png' %}"  width="22" alt="lab_pic">
-                จำนวนคนในแลปขณะนี้ : {{ current_people }} คน
-            </p>
-            <form id="TimeForm">
 
+<main>
+    <div class="container">
+        <div class="about-lab-card">
+            <h1 class="room-name">
+                <img src="{% static 'images/logo.png' %}" alt="lab_pic">
+                {{ lab_name }}
+            </h1>
+            <h2 class="amount-people">
+                <i class="fas fa-user"></i>
+                จำนวนคนในแลปขณะนี้
+                <p>{{ current_people }} คน</p>
+            </h2>
+        </div>
+        
+        <div class="time-picker-wrapper">
+            <h2 class="title">เลือกเวลาเช็คเอาท์ <span>(select 1)*</span></h2>
+
+            <form id="TimeForm">
                 {% csrf_token %}
                 <input name="next" id="lab_hash" value="{{lab_hash}}" hidden>
-                <label for="check_out_time" class="checkout_select_time">เลือกเวลาเช็คเอาท์ :</label> 
-            
-                <div class="dropdown checkout_time">
-                    
-                    <select class="btn btn-light btn-sm dropdown-toggle btn-timeselect" aria-haspopup="true" aria-expanded="false" aria-labelledby="dropdownMenu2" id="time" onchange='selectTime();'>
-                        {% if time_option == 1 %}
-                            <option selected="selected" value="12:00">12:00</option>
-                            <option value="16:00">16:00</option>
-                            <option value="20:00">20:00</option>
-                            <option value="others">กำหนดเอง</option>
-                        {% elif time_option == 2 %}
-                            <option selected="selected" value="16:00">16:00</option>
-                            <option value="20:00">20:00</option>
-                            <option value="others">กำหนดเอง</option>
-                        {% elif time_option == 3 %}
-                            <option selected="selected" value="20:00">20:00</option>
-                            <option value="others">กำหนดเอง</option>
-                        {% elif time_option == 4 %}
-                            <option selected="selected" value="others">กำหนดเอง</option>
-                        {% endif %}
-                    </select>
-                    
-                </div>
-                
-                <br>
-                
-                <div class="container-fluid col-12 col-sm-4">
-                    <div class="form-group input-time">
-                        
-                      <input type="time" class="form-control" name="check_out_time" id="time_value" value="12:00" onchange="CheckTime({{time_now_hour}}, {{time_now_minute}}) " style='display:none;'/>
+                <p id="status"></p>
+                <div class="time-picker row">
+                    <div class="col">
+                    {% if time_option == 1 %}
+                        <input type="checkbox" class="btn-check" id="12PM" value="12:00" autocomplete="off">
+                        <label class="btn btn-outline-primary" for="12PM">12:00</label>
+                        <input type="checkbox" class="btn-check" id="4PM" value="16:00" autocomplete="off">
+                        <label class="btn btn-outline-primary" for="4PM">16:00</label>
+                        <input type="checkbox" class="btn-check" id="8PM" value="20:00" autocomplete="off">
+                        <label class="btn btn-outline-primary" for="8PM">20:00</label>
+                        <input type="checkbox" class="btn-check" id="others" value="others" autocomplete="off">
+                        <label class="btn btn-outline-primary" for="others">กำหนดเอง</label>
+                    {% elif time_option == 2 %}
+                        <input type="checkbox" class="btn-check" id="4PM" value="16:00" autocomplete="off">
+                        <label class="btn btn-outline-primary" for="4PM">16:00</label>
+                        <input type="checkbox" class="btn-check" id="8PM" value="20:00" autocomplete="off">
+                        <label class="btn btn-outline-primary" for="8PM">20:00</label>
+                        <input type="checkbox" class="btn-check" id="others" value="others" autocomplete="off">
+                        <label class="btn btn-outline-primary" for="others">กำหนดเอง</label>
+                    {% elif time_option == 3 %}
+                        <input type="checkbox" class="btn-check" id="8PM" value="20:00" autocomplete="off">
+                        <label class="btn btn-outline-primary" for="8PM">20:00</label>
+                        <input type="checkbox" class="btn-check" id="others" value="others" autocomplete="off">
+                        <label class="btn btn-outline-primary" for="others">กำหนดเอง</label>
+                    {% elif time_option == 4 %}
+                        <input type="checkbox" class="btn-check" id="others" value="others" autocomplete="off">
+                        <label class="btn btn-outline-primary" for="others">กำหนดเอง</label>
+                    {% endif %}
                     </div>
                 </div>
 
-            
-                <p id="status"></p>
-                <div>
-                    <button style="width:100%" type="button" class="btn btn-success btn-checkin" id="checkin_button">เช็คอิน</button>
+                <div class="select-time">
+                    <input type="time" class="form-control" name="check_out_time" id="time_value" value="12:00" 
+                    onchange="CheckTime({{time_now_hour}}, {{time_now_minute}})"/>
                 </div>
 
+                <button type="submit" class="checkin-btn" id="checkin_button">
+                    เช็คอิน
+                </button>
             </form>
         </div>
     </div>
-</div>
+</main>
 
 {% endblock %}
 

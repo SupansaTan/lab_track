@@ -1,0 +1,267 @@
+@import 'base';
+
+%button {
+    width: 50vw;
+    border: none;
+    padding: 10px 0 10px 0;
+    margin: 10px 0 10px 0;
+    color: white;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, 
+    rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+    border-radius: 50px;
+    text-align: center;
+    font-size: 1.4rem;
+    font-family: $font-stack;
+
+    &:focus {
+        outline: none;
+    }
+
+    @include breakpoint(xs) {
+        font-size: 0.9rem;
+    }
+}
+
+/* header */
+.username {
+    padding: 3px 10px 3px 5px;
+    position: relative;
+    top: 20px;
+    right: 20px;
+    border: none;
+    border-radius: 50px;
+    box-shadow: $shadow;
+    background-color: white;
+
+    svg {
+        margin-top: -5px;
+        width: 2rem;
+        height: auto;
+    }
+
+    span {
+        font-size: 1.5rem;
+    }
+
+    i {
+        font-size: 1rem;
+    }
+}
+
+.dropdown-toggle {
+    display: flex;
+    align-items: center;
+
+    &:hover, &:focus {
+        text-decoration: none;
+    }
+
+    &::after {
+        display: none;
+    }
+}
+
+.dropdown-menu {
+    position: relative;
+    top: 0;
+    left: 0;
+    border: 0;
+    z-index: 1000;
+    display: none;
+    font-size: 1rem;
+    color: #212529;
+    text-align: left;
+    list-style: none;
+    padding: 0.5rem 0;
+    margin: 0.125rem 0 0;
+    border-radius: 0.25rem;
+    background-color: white;
+    background-clip: padding-box;
+    box-shadow: 0 2px 30px 0 rgba(207,207,207,0.5);
+
+    &.show {
+        display: block;
+        margin: 10px 30px 0 0;
+    }
+}
+
+.dropdown-item {
+    border: 0;
+    display: block;
+    width: 100%;
+    clear: both;
+    font-size: 1rem;
+    font-weight: 400;
+    color: #212529;
+    text-align: inherit;
+    white-space: nowrap;
+    background-color: transparent;
+
+    &:hover, &:focus {
+        color: #16181b;
+        text-decoration: none;
+        background-color: #f8f9fa;
+    }
+
+    &.active, &:active {
+        color: #fff;
+        text-decoration: none;
+        background-color: #007bff;
+    }
+
+    &.disabled, &:disabled {
+        color: #6c757d;
+        pointer-events: none;
+        background-color: transparent; 
+    }
+}
+
+/* card */
+main {
+    display: table;
+    position: relative;
+    top: 5vh;
+    left: 0;
+    height: 100%;
+    width: 100%;
+
+    .container {
+        width: 100%;
+        padding: 0;
+        display: table;
+    }
+}
+
+.about-lab-card {
+    width: 50vw;
+    color: white;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center;
+    border-radius: 25px;
+    box-shadow: $shadow;
+    background: linear-gradient(45deg, #03a9f4, #0288d1);
+
+    img {
+        width: 50px;
+    }
+
+    h1.room-name {
+        margin: 0.5rem;
+        font-size: 2rem;
+        text-shadow: 3px 3px rgba(0, 0, 0, 0.16);
+    }
+
+    h2.amount-people {
+        margin: 0.5rem;
+        font-size: 1.8rem;
+        text-shadow: 3px 3px rgba(0, 0, 0, 0.16);
+    
+        p {
+            margin: 0;
+            color: $dark-blue;
+            border-radius: 25px;
+            text-shadow: none;
+            box-shadow: 3px 3px rgba(0, 0, 0, 0.16);
+            display: inline-block;
+            background-color: white;
+            padding: 5px 10px 5px 10px;
+        }
+    }
+}
+
+/* time picker */
+.time-picker-wrapper {
+    width: 100%;
+    padding: 1rem 0 1rem 0;
+    box-shadow: $shadow;
+    margin: 1.5rem 0 1.5rem 0;
+    background-color: white;
+
+    h2.title {
+        margin: 1rem 0 1rem 25vw;
+        font-size: 1.8rem;
+
+        span {
+            color: #ff3232;
+        }
+    }
+}
+
+.time-picker {
+    margin-left: 25vw;
+    line-height: 0.5rem;
+
+    .col {
+        position: relative;
+        transition: transform 0.5s ease;
+    }
+
+    p { 
+        width: 50vw;
+        color: #ff3232;
+        padding: 0.3rem;
+        font-size: 1rem;
+        margin: 0.5rem 0 0.5rem 0;
+        background-color: $light-red;
+    }
+
+    label {
+        margin: 0.5rem;
+        color: $dark-blue;
+        font-size: 25px;
+        font-weight: 500;
+        text-align: center;
+        border-radius: 50px;
+        position: relative;
+        box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+        text-decoration: none;
+        border: 1px solid $dark-blue;
+        background-color: white;
+        padding: 5px 10px 5px 10px;
+
+        i.fa-times {
+            font-size: 1.4rem;
+            margin-left: 5px;
+        }    
+    }
+
+    input {
+        position: absolute;
+        clip: rect(0,0,0,0);
+        pointer-events: none;
+    }
+
+    .btn-check:active + .btn-outline-primary,
+    .btn-check:checked + .btn-outline-primary {
+        color: white;
+        background-color: #0d6efd;
+        border-color: #0d6efd;
+    }
+}
+
+.select-time {
+    input[type=time] {
+        display: none;
+        width: 30vw;
+        font-size: 1.2rem;
+        border-radius: 50px;
+        font-family: $font-stack;
+        margin: 1rem auto 1rem auto;
+        box-shadow: 3px 3px rgba(0, 0, 0, 0.16);
+
+        &:focus{
+            outline: none;
+            box-shadow: none;
+        }
+    }
+}
+
+/* check in button */
+.checkin-btn {
+    @extend %button;
+    display: table;
+    font-size: 1.3rem;
+    margin: 1rem auto 1rem auto;
+    background-color: #00c853;
+}

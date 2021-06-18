@@ -1,0 +1,212 @@
+html, body {
+  width: 100%;
+  height: 100%;
+  background-color: #fbfbfb;
+  font-family: "Poppins", "Mitr", sans-serif; }
+
+body {
+  overflow-x: hidden; }
+
+/* responsive */
+.checkin-btn {
+  width: 50vw;
+  border: none;
+  padding: 10px 0 10px 0;
+  margin: 10px 0 10px 0;
+  color: white;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+  border-radius: 50px;
+  text-align: center;
+  font-size: 1.4rem;
+  font-family: "Poppins", "Mitr", sans-serif; }
+  .checkin-btn:focus {
+    outline: none; }
+  @media (max-width: 767px) {
+    .checkin-btn {
+      font-size: 0.9rem; } }
+/* header */
+.username {
+  padding: 3px 10px 3px 5px;
+  position: relative;
+  top: 20px;
+  right: 20px;
+  border: none;
+  border-radius: 50px;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  background-color: white; }
+  .username svg {
+    margin-top: -5px;
+    width: 2rem;
+    height: auto; }
+  .username span {
+    font-size: 1.5rem; }
+  .username i {
+    font-size: 1rem; }
+
+.dropdown-toggle {
+  display: flex;
+  align-items: center; }
+  .dropdown-toggle:hover, .dropdown-toggle:focus {
+    text-decoration: none; }
+  .dropdown-toggle::after {
+    display: none; }
+
+.dropdown-menu {
+  position: relative;
+  top: 0;
+  left: 0;
+  border: 0;
+  z-index: 1000;
+  display: none;
+  font-size: 1rem;
+  color: #212529;
+  text-align: left;
+  list-style: none;
+  padding: 0.5rem 0;
+  margin: 0.125rem 0 0;
+  border-radius: 0.25rem;
+  background-color: white;
+  background-clip: padding-box;
+  box-shadow: 0 2px 30px 0 rgba(207, 207, 207, 0.5); }
+  .dropdown-menu.show {
+    display: block;
+    margin: 10px 30px 0 0; }
+
+.dropdown-item {
+  border: 0;
+  display: block;
+  width: 100%;
+  clear: both;
+  font-size: 1rem;
+  font-weight: 400;
+  color: #212529;
+  text-align: inherit;
+  white-space: nowrap;
+  background-color: transparent; }
+  .dropdown-item:hover, .dropdown-item:focus {
+    color: #16181b;
+    text-decoration: none;
+    background-color: #f8f9fa; }
+  .dropdown-item.active, .dropdown-item:active {
+    color: #fff;
+    text-decoration: none;
+    background-color: #007bff; }
+  .dropdown-item.disabled, .dropdown-item:disabled {
+    color: #6c757d;
+    pointer-events: none;
+    background-color: transparent; }
+
+/* card */
+main {
+  display: table;
+  position: relative;
+  top: 5vh;
+  left: 0;
+  height: 100%;
+  width: 100%; }
+  main .container {
+    width: 100%;
+    padding: 0;
+    display: table; }
+
+.about-lab-card {
+  width: 50vw;
+  color: white;
+  margin: 0 auto;
+  padding: 20px;
+  text-align: center;
+  border-radius: 25px;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  background: linear-gradient(45deg, #03a9f4, #0288d1); }
+  .about-lab-card img {
+    width: 50px; }
+  .about-lab-card h1.room-name {
+    margin: 0.5rem;
+    font-size: 2rem;
+    text-shadow: 3px 3px rgba(0, 0, 0, 0.16); }
+  .about-lab-card h2.amount-people {
+    margin: 0.5rem;
+    font-size: 1.8rem;
+    text-shadow: 3px 3px rgba(0, 0, 0, 0.16); }
+    .about-lab-card h2.amount-people p {
+      margin: 0;
+      color: #1261A0;
+      border-radius: 25px;
+      text-shadow: none;
+      box-shadow: 3px 3px rgba(0, 0, 0, 0.16);
+      display: inline-block;
+      background-color: white;
+      padding: 5px 10px 5px 10px; }
+
+/* time picker */
+.time-picker-wrapper {
+  width: 100%;
+  padding: 1rem 0 1rem 0;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  margin: 1.5rem 0 1.5rem 0;
+  background-color: white; }
+  .time-picker-wrapper h2.title {
+    margin: 1rem 0 1rem 25vw;
+    font-size: 1.8rem; }
+    .time-picker-wrapper h2.title span {
+      color: #ff3232; }
+
+.time-picker {
+  margin-left: 25vw;
+  line-height: 0.5rem; }
+  .time-picker .col {
+    position: relative;
+    transition: transform 0.5s ease; }
+  .time-picker p {
+    width: 50vw;
+    color: #ff3232;
+    padding: 0.3rem;
+    font-size: 1rem;
+    margin: 0.5rem 0 0.5rem 0;
+    background-color: #ffe5e5; }
+  .time-picker label {
+    margin: 0.5rem;
+    color: #1261A0;
+    font-size: 25px;
+    font-weight: 500;
+    text-align: center;
+    border-radius: 50px;
+    position: relative;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+    text-decoration: none;
+    border: 1px solid #1261A0;
+    background-color: white;
+    padding: 5px 10px 5px 10px; }
+    .time-picker label i.fa-times {
+      font-size: 1.4rem;
+      margin-left: 5px; }
+  .time-picker input {
+    position: absolute;
+    clip: rect(0, 0, 0, 0);
+    pointer-events: none; }
+  .time-picker .btn-check:active + .btn-outline-primary,
+  .time-picker .btn-check:checked + .btn-outline-primary {
+    color: white;
+    background-color: #0d6efd;
+    border-color: #0d6efd; }
+
+.select-time input[type=time] {
+  display: none;
+  width: 30vw;
+  font-size: 1.2rem;
+  border-radius: 50px;
+  font-family: "Poppins", "Mitr", sans-serif;
+  margin: 1rem auto 1rem auto;
+  box-shadow: 3px 3px rgba(0, 0, 0, 0.16); }
+  .select-time input[type=time]:focus {
+    outline: none;
+    box-shadow: none; }
+
+/* check in button */
+.checkin-btn {
+  display: table;
+  font-size: 1.3rem;
+  margin: 1rem auto 1rem auto;
+  background-color: #00c853; }
+
+/*# sourceMappingURL=lab_checkin.css.map */
