@@ -148,22 +148,24 @@ main {
   .time-picker-wrapper h2.title {
     margin: 1rem 0 1rem 25vw;
     font-size: 1.8rem; }
-    .time-picker-wrapper h2.title span {
-      color: #ff3232; }
+  .time-picker-wrapper p {
+    width: 50vw;
+    display: none;
+    color: #ff3232;
+    padding: 0.3rem;
+    font-size: 1rem;
+    text-align: center;
+    border-radius: 10px;
+    margin: 0.5rem auto 0.5rem auto;
+    background-color: #ffe5e5; }
 
 .time-picker {
   margin-left: 25vw;
   line-height: 0.5rem; }
   .time-picker .col {
     position: relative;
+    max-width: 50vw;
     transition: transform 0.5s ease; }
-  .time-picker p {
-    width: 50vw;
-    color: #ff3232;
-    padding: 0.3rem;
-    font-size: 1rem;
-    margin: 0.5rem 0 0.5rem 0;
-    background-color: #ffe5e5; }
   .time-picker label {
     margin: 0.5rem;
     color: #1261A0;
@@ -180,6 +182,10 @@ main {
     .time-picker label i.fa-times {
       font-size: 1.4rem;
       margin-left: 5px; }
+  .time-picker .btn-check + .btn-outline-primary {
+    color: #1261A0;
+    background-color: white;
+    border-color: #1261A0; }
   .time-picker input {
     position: absolute;
     clip: rect(0, 0, 0, 0);
@@ -190,17 +196,20 @@ main {
     background-color: #0d6efd;
     border-color: #0d6efd; }
 
-.select-time input[type=time] {
-  display: none;
-  width: 30vw;
-  font-size: 1.2rem;
-  border-radius: 50px;
-  font-family: "Poppins", "Mitr", sans-serif;
-  margin: 1rem auto 1rem auto;
-  box-shadow: 3px 3px rgba(0, 0, 0, 0.16); }
-  .select-time input[type=time]:focus {
-    outline: none;
-    box-shadow: none; }
+.select-time {
+  display: table;
+  margin: 0 auto; }
+  .select-time input[type=time] {
+    width: 30vw;
+    display: none;
+    font-size: 1.2rem;
+    border-radius: 50px;
+    font-family: "Poppins", "Mitr", sans-serif;
+    margin: 1rem auto 1rem auto;
+    box-shadow: 3px 3px rgba(0, 0, 0, 0.16); }
+    .select-time input[type=time]:focus {
+      outline: none;
+      box-shadow: none; }
 
 /* check in button */
 .checkin-btn {

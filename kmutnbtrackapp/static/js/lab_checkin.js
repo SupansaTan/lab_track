@@ -2,43 +2,53 @@
 /* show,hide checkbox & time picker */
 $('#TimeForm :checkbox').change(function() {
     const Mode = this.value;
-    const time_selector = document.getElementById('time_value');
+    const time_selector = $('#time_value');
 
     if (this.checked) {
         
+        /* when multiple checkboxes are checked */
+        // unchecked & remove cancel icon other checkbox, hide time picker
+        $('input:checkbox:checked').not(document.getElementById(Mode)).prop('checked', false)
+        $('label').not($('label[for="' + Mode + '"]')).children().first().remove()
+        time_selector.hide()
+
         /* show cancel icon & hide other checkbox */
         switch(Mode) {
             case '12:00':
-                $('label[for="12PM"]').append('<i class="fas fa-times"></i>');
-                $('label[for="4PM"],label[for="8PM"],label[for="others"]').css('display','none')
-                break
-
             case '16:00':
-                $('label[for="4PM"]').append('<i class="fas fa-times"></i>');
-                $('label[for="8PM"],label[for="12PM"],label[for="others"]').css('display','none')
-                break
-
             case '20:00':
-                $('label[for="8PM"]').append('<i class="fas fa-times"></i>');
-                $('label[for="4PM"],label[for="12PM"],label[for="others"]').css('display','none')
+                $('label[for="' + Mode + '"]').append('<i class="fas fa-times"></i>');
+                time_selector.val(Mode)
                 break
 
             case 'others':
-                time_selector.style.display='block' // display time picker
-                $('label[for="others"]').append('<i class="fas fa-times"></i>'); 
-                $('label[for="12PM"],label[for="4PM"],label[for="8PM"]').css('display','none')
-                break
+                let now = new Date($.now())
+                let hours_two_digit = ("0" + now.getHours()).slice(-2)
+                let minutes_two_digit = ("0" + now.getMinutes()).slice(-2)
 
-            default:
-                return true
+                time_selector.show() // display time picker
+                time_selector.val(hours_two_digit + ':' + minutes_two_digit)
+                $('label[for="others"]').append('<i class="fas fa-times"></i>'); 
+                break
         }
     }
     else {
-        Mode == "others" ? time_selector.style.display='none':true // hide time picker
-        
+        Mode == "others" ? time_selector.hide() : true // hide time picker
         $('i.fa-times').remove() // remove cancel icon
-        $('label[for="12PM"],label[for="4PM"],label[for="8PM"],label[for="others"]').map(function(){
-            $(this).css('display','')
-        })
     }
 });
+
+function checkTime() {
+    let now = new Date($.now())
+    let time_selector = $('#time_value').val().split(':')
+    let select_time = new Date(now.getFullYear(), now.getMonth(), now.getDate(), time_selector[0], time_selector[1])
+
+    if(select_time > now) {
+        $('#status').hide()
+        return true
+    }
+    else {
+        $('#status').show()
+        return false
+    }
+}

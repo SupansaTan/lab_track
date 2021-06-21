@@ -181,10 +181,18 @@ main {
     h2.title {
         margin: 1rem 0 1rem 25vw;
         font-size: 1.8rem;
+    }
 
-        span {
-            color: #ff3232;
-        }
+    p { 
+        width: 50vw;
+        display: none;
+        color: #ff3232;
+        padding: 0.3rem;
+        font-size: 1rem;
+        text-align: center;
+        border-radius: 10px;
+        margin: 0.5rem auto 0.5rem auto;
+        background-color: $light-red;
     }
 }
 
@@ -194,16 +202,8 @@ main {
 
     .col {
         position: relative;
+        max-width: 50vw;
         transition: transform 0.5s ease;
-    }
-
-    p { 
-        width: 50vw;
-        color: #ff3232;
-        padding: 0.3rem;
-        font-size: 1rem;
-        margin: 0.5rem 0 0.5rem 0;
-        background-color: $light-red;
     }
 
     label {
@@ -226,6 +226,12 @@ main {
         }    
     }
 
+    .btn-check + .btn-outline-primary {
+        color: $dark-blue;
+        background-color: white;
+        border-color: $dark-blue;
+    }
+
     input {
         position: absolute;
         clip: rect(0,0,0,0);
@@ -241,9 +247,12 @@ main {
 }
 
 .select-time {
+    display: table;
+    margin: 0 auto;
+
     input[type=time] {
-        display: none;
         width: 30vw;
+        display: none;
         font-size: 1.2rem;
         border-radius: 50px;
         font-family: $font-stack;
