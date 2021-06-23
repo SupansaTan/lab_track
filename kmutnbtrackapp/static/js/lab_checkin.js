@@ -35,6 +35,7 @@ $('#TimeForm :checkbox').change(function() {
     else {
         Mode == "others" ? time_selector.hide() : true // hide time picker
         $('i.fa-times').remove() // remove cancel icon
+        $('#status').hide()
     }
 });
 
@@ -44,11 +45,11 @@ function checkTime() {
     let select_time = new Date(now.getFullYear(), now.getMonth(), now.getDate(), time_selector[0], time_selector[1])
 
     if(select_time > now) {
-        $('#status').hide()
+        $('#status').text('กรุณาเลือกเวลาใช้งานที่ถูกต้อง').hide()
         return true
     }
     else {
-        $('#status').show()
+        $('#status').text('กรุณาเลือกเวลาใช้งานที่ถูกต้อง').show()
         return false
     }
 }

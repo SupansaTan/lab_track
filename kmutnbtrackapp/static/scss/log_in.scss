@@ -135,7 +135,7 @@ main {
         }
 
         @include breakpoint(lg) {
-            margin-left: (100vw-30vw) / 2;
+            margin-left: (100vw-40vw) / 2;
         }
     }
 
@@ -155,7 +155,7 @@ main {
         }
 
         @include breakpoint(lg) {
-            max-width: 30vw;
+            max-width: 40vw;
         }
 
         .card-container {

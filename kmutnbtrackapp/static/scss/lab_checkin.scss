@@ -1,24 +1,38 @@
 @import 'base';
 
+@mixin dropdown($color, $text-style, $bg-color) {
+    color: $color;
+    text-decoration: $text-style;
+    background-color: $bg-color;
+}
+
+@mixin badge($color) {
+    margin: 0;
+    color: $color;
+    border-radius: 25px;
+    text-shadow: none;
+    box-shadow: 3px 3px rgba(0, 0, 0, 0.16);
+    display: inline-block;
+    background-color: white;
+    padding: 5px 10px 5px 10px;
+}
+
+/* set button */
 %button {
-    width: 50vw;
+    width: 40vw;
     border: none;
     padding: 10px 0 10px 0;
     margin: 10px 0 10px 0;
     color: white;
     box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, 
     rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
-    border-radius: 50px;
+    border-radius: 10px;
     text-align: center;
-    font-size: 1.4rem;
+    font-size: 1.5rem;
     font-family: $font-stack;
 
     &:focus {
         outline: none;
-    }
-
-    @include breakpoint(xs) {
-        font-size: 0.9rem;
     }
 }
 
@@ -37,14 +51,26 @@
         margin-top: -5px;
         width: 2rem;
         height: auto;
+
+        @include breakpoint(xs) {
+            width: 1.7rem;
+        }
     }
 
     span {
         font-size: 1.5rem;
+
+        @include breakpoint(xs) {
+            font-size: 1.2rem;
+        }
     }
 
     i {
         font-size: 1rem;
+
+        @include breakpoint(xs) {
+            font-size: 0.5rem;
+        }
     }
 }
 
@@ -73,7 +99,7 @@
     text-align: left;
     list-style: none;
     padding: 0.5rem 0;
-    margin: 0.125rem 0 0;
+    margin: 0.2rem 0 0;
     border-radius: 0.25rem;
     background-color: white;
     background-clip: padding-box;
@@ -90,29 +116,84 @@
     display: block;
     width: 100%;
     clear: both;
-    font-size: 1rem;
+    font-size: 1.2rem;
     font-weight: 400;
     color: #212529;
     text-align: inherit;
     white-space: nowrap;
     background-color: transparent;
 
+    @include breakpoint(xs) {
+        font-size: 1rem;
+    }
+
     &:hover, &:focus {
-        color: #16181b;
-        text-decoration: none;
-        background-color: #f8f9fa;
+        @include dropdown(#16181b, none, #f8f9fa);
     }
 
     &.active, &:active {
-        color: #fff;
-        text-decoration: none;
-        background-color: #007bff;
+        @include dropdown(white, none, #007bff);
     }
 
     &.disabled, &:disabled {
-        color: #6c757d;
-        pointer-events: none;
-        background-color: transparent; 
+        @include dropdown(#6c757d, none, transparent);
+    }
+}
+
+/* alert lab exceeded limit */
+.alert {
+    position: relative;
+    top: 70px;
+    left: 0;
+    width: 40vw;
+    border: none;
+    color: #ff3232;
+    margin: 10px auto;
+    text-align: center;
+    border-radius: 15px;
+    background-color: $light-red;
+
+    @include breakpoint(xs) {
+        width: 90vw;
+    }
+    @include breakpoint(sm) {
+        width: 60vw;
+    }
+    @include breakpoint(lg) {
+        width: 40vw;
+    }
+
+    h2.heading {
+        @include breakpoint(xs) {
+            margin-left: 5rem;
+            font-size: 1.5rem;
+        }
+    }
+
+    hr {
+        margin: 10px 0;
+    }
+
+    h4 {
+        @include breakpoint(xs) {
+            font-size: 1.2rem;
+        }
+    }
+
+    h5 {
+        @include breakpoint(xs) {
+            font-size: 1rem;
+        }
+    }
+
+    br {
+        @include breakpoint(md) {
+            display: none;
+        }
+    }
+
+    p {
+        @include badge(#ff3232);
     }
 }
 
@@ -120,10 +201,14 @@
 main {
     display: table;
     position: relative;
-    top: 5vh;
+    top: 70px;
     left: 0;
     height: 100%;
     width: 100%;
+
+    @include breakpoint(xs) {
+        top: 70px;
+    }
 
     .container {
         width: 100%;
@@ -133,39 +218,56 @@ main {
 }
 
 .about-lab-card {
-    width: 50vw;
+    width: 40vw;
     color: white;
     margin: 0 auto;
     padding: 20px;
     text-align: center;
     border-radius: 25px;
-    box-shadow: $shadow;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
     background: linear-gradient(45deg, #03a9f4, #0288d1);
+
+    @include breakpoint(xs) {
+        width: 90vw;
+        padding: 10px;
+    }
+    @include breakpoint(sm) {
+        width: 60vw;
+    }
+    @include breakpoint(lg) {
+        width: 40vw;
+    }
 
     img {
         width: 50px;
+
+        @include breakpoint(xs) {
+            width: 30px;
+        }
     }
 
     h1.room-name {
         margin: 0.5rem;
-        font-size: 2rem;
+        font-size: 2.4rem;
         text-shadow: 3px 3px rgba(0, 0, 0, 0.16);
+
+        @include breakpoint(xs) {
+            font-size: 1.6rem;
+        }
     }
 
     h2.amount-people {
         margin: 0.5rem;
+        padding-top: 0.4rem;
         font-size: 1.8rem;
         text-shadow: 3px 3px rgba(0, 0, 0, 0.16);
+
+        @include breakpoint(xs) {
+            font-size: 1.1rem;
+        }
     
         p {
-            margin: 0;
-            color: $dark-blue;
-            border-radius: 25px;
-            text-shadow: none;
-            box-shadow: 3px 3px rgba(0, 0, 0, 0.16);
-            display: inline-block;
-            background-color: white;
-            padding: 5px 10px 5px 10px;
+            @include badge($dark-blue);
         }
     }
 }
@@ -173,43 +275,85 @@ main {
 /* time picker */
 .time-picker-wrapper {
     width: 100%;
-    padding: 1rem 0 1rem 0;
+    padding: 1rem 0;
     box-shadow: $shadow;
-    margin: 1.5rem 0 1.5rem 0;
+    margin: 1.5rem 0;
     background-color: white;
 
     h2.title {
-        margin: 1rem 0 1rem 25vw;
+        margin: 1rem 0 1rem 30vw;
         font-size: 1.8rem;
+
+        @include breakpoint(xs) {
+            margin: 0.5rem 0 0.5rem 5vw;
+            font-size: 1.5rem;
+        }
+        @include breakpoint(sm) {
+            margin: 0.5rem 0 0.5rem 20vw;
+        }
+        @include breakpoint(lg) {
+            margin: 1rem 0 1rem 30vw;
+        }
     }
 
     p { 
-        width: 50vw;
+        width: 40vw;
         display: none;
         color: #ff3232;
         padding: 0.3rem;
-        font-size: 1rem;
+        font-size: 1.4rem;
         text-align: center;
         border-radius: 10px;
-        margin: 0.5rem auto 0.5rem auto;
+        margin: 0.5rem auto;
         background-color: $light-red;
+
+        @include breakpoint(xs) {
+            width: 90vw;
+            font-size: 1rem;
+        }
+        @include breakpoint(sm) {
+            width: 60vw;
+        }
+        @include breakpoint(lg) {
+            width: 40vw;
+        }
     }
 }
 
 .time-picker {
-    margin-left: 25vw;
+    margin-left: 30vw;
     line-height: 0.5rem;
+
+    @include breakpoint(xs) {
+        margin-left: 5vw;
+    }
+    @include breakpoint(sm) {
+        margin-left: 20vw;
+    }
+    @include breakpoint(lg) {
+        margin-left: 30vw;
+    }
 
     .col {
         position: relative;
-        max-width: 50vw;
+        max-width: 40vw;
         transition: transform 0.5s ease;
+
+        @include breakpoint(xs) {
+            max-width: 90vw;
+        }
+        @include breakpoint(sm) {
+            max-width: 60vw;
+        }
+        @include breakpoint(lg) {
+            max-width: 40vw;
+        }
     }
 
     label {
         margin: 0.5rem;
         color: $dark-blue;
-        font-size: 25px;
+        font-size: 1.5rem;
         font-weight: 500;
         text-align: center;
         border-radius: 50px;
@@ -220,9 +364,17 @@ main {
         background-color: white;
         padding: 5px 10px 5px 10px;
 
+        @include breakpoint(xs) {
+            font-size: 1.2rem;
+        }
+
         i.fa-times {
             font-size: 1.4rem;
             margin-left: 5px;
+
+            @include breakpoint(xs) {
+                font-size: 1.2rem;
+            }
         }    
     }
 
@@ -251,13 +403,24 @@ main {
     margin: 0 auto;
 
     input[type=time] {
-        width: 30vw;
+        width: 10vw;
         display: none;
-        font-size: 1.2rem;
+        font-size: 1.3rem;
         border-radius: 50px;
         font-family: $font-stack;
         margin: 1rem auto 1rem auto;
         box-shadow: 3px 3px rgba(0, 0, 0, 0.16);
+
+        @include breakpoint(xs) {
+            width: 40vw;
+            font-size: 1rem;
+        }
+        @include breakpoint(sm) {
+            width: 20vw;
+        }
+        @include breakpoint(lg) {
+            width: 10vw;
+        }
 
         &:focus{
             outline: none;
@@ -270,7 +433,22 @@ main {
 .checkin-btn {
     @extend %button;
     display: table;
-    font-size: 1.3rem;
+    font-size: 1.4rem;
     margin: 1rem auto 1rem auto;
     background-color: #00c853;
+
+    @include breakpoint(xs) {
+        width: 90vw;
+        font-size: 1.2rem;
+    }
+    @include breakpoint(sm) {
+        width: 60vw;
+    }
+    @include breakpoint(lg) {
+        width: 40vw;
+    }
+
+    &:hover {
+        background-color: darken(#00c853, 5%);
+    }
 }

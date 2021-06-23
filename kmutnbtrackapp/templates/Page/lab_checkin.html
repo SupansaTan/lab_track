@@ -40,6 +40,9 @@
                     },
                 })
             }
+            else if(isChecked.length==1) {
+                $('#status').text('กรุณาเลือกเวลาใช้งานที่ถูกต้อง').show()
+            }
             else {
                 $('#status').text('กรุณาเลือกเวลาเช็คเอาท์').show()
             }
@@ -117,12 +120,11 @@
 
 <!-- exceeded limit -->
 {% if lab_exceeded_limit %}
-    <div class="container" style="text-align: center;">
-        <div class="alert alert-danger" role="alert">
-            <h4 class="alert-heading">คำเตือน</h4>
-            <p class="time-checkin">ห้องแลปเกินโควต้าที่สามารถเช็คอินได้ ({{ maximum_people }} คน)</p>
-            <p class="time-checkin">โปรดแจ้งอาจารย์ประจำแลป เพื่อขออนุญาตทำการเช็คอิน</p>
-        </div>
+    <div class="alert" role="alert">
+        <h2 class="heading">คำเตือน</h2>
+        <hr>
+        <h4>ห้องแลปเกินโควต้า<br>ที่สามารถเช็คอินได้ <p>{{ maximum_people }} คน</p></h4>
+        <h5>โปรดแจ้งอาจารย์ประจำแลป<br>เพื่อขออนุญาตทำการเช็คอิน</h5>
     </div>
 {% endif %}
 

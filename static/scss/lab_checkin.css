@@ -8,22 +8,21 @@ body {
   overflow-x: hidden; }
 
 /* responsive */
+/* set button */
 .checkin-btn {
-  width: 50vw;
+  width: 40vw;
   border: none;
   padding: 10px 0 10px 0;
   margin: 10px 0 10px 0;
   color: white;
   box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
-  border-radius: 50px;
+  border-radius: 10px;
   text-align: center;
-  font-size: 1.4rem;
+  font-size: 1.5rem;
   font-family: "Poppins", "Mitr", sans-serif; }
   .checkin-btn:focus {
     outline: none; }
-  @media (max-width: 767px) {
-    .checkin-btn {
-      font-size: 0.9rem; } }
+
 /* header */
 .username {
   padding: 3px 10px 3px 5px;
@@ -38,11 +37,19 @@ body {
     margin-top: -5px;
     width: 2rem;
     height: auto; }
+    @media (max-width: 767px) {
+      .username svg {
+        width: 1.7rem; } }
   .username span {
     font-size: 1.5rem; }
+    @media (max-width: 767px) {
+      .username span {
+        font-size: 1.2rem; } }
   .username i {
     font-size: 1rem; }
-
+    @media (max-width: 767px) {
+      .username i {
+        font-size: 0.5rem; } }
 .dropdown-toggle {
   display: flex;
   align-items: center; }
@@ -63,7 +70,7 @@ body {
   text-align: left;
   list-style: none;
   padding: 0.5rem 0;
-  margin: 0.125rem 0 0;
+  margin: 0.2rem 0 0;
   border-radius: 0.25rem;
   background-color: white;
   background-clip: padding-box;
@@ -77,57 +84,129 @@ body {
   display: block;
   width: 100%;
   clear: both;
-  font-size: 1rem;
+  font-size: 1.2rem;
   font-weight: 400;
   color: #212529;
   text-align: inherit;
   white-space: nowrap;
   background-color: transparent; }
+  @media (max-width: 767px) {
+    .dropdown-item {
+      font-size: 1rem; } }
   .dropdown-item:hover, .dropdown-item:focus {
     color: #16181b;
     text-decoration: none;
     background-color: #f8f9fa; }
   .dropdown-item.active, .dropdown-item:active {
-    color: #fff;
+    color: white;
     text-decoration: none;
     background-color: #007bff; }
   .dropdown-item.disabled, .dropdown-item:disabled {
     color: #6c757d;
-    pointer-events: none;
+    text-decoration: none;
     background-color: transparent; }
+
+/* alert lab exceeded limit */
+.alert {
+  position: relative;
+  top: 70px;
+  left: 0;
+  width: 40vw;
+  border: none;
+  color: #ff3232;
+  margin: 10px auto;
+  text-align: center;
+  border-radius: 15px;
+  background-color: #ffe5e5; }
+  @media (max-width: 767px) {
+    .alert {
+      width: 90vw; } }
+  @media (min-width: 768px) {
+    .alert {
+      width: 60vw; } }
+  @media (min-width: 1200px) {
+    .alert {
+      width: 40vw; } }
+  @media (max-width: 767px) {
+    .alert h2.heading {
+      margin-left: 5rem;
+      font-size: 1.5rem; } }
+  .alert hr {
+    margin: 10px 0; }
+  @media (max-width: 767px) {
+    .alert h4 {
+      font-size: 1.2rem; } }
+  @media (max-width: 767px) {
+    .alert h5 {
+      font-size: 1rem; } }
+  @media (min-width: 992px) {
+    .alert br {
+      display: none; } }
+  .alert p {
+    margin: 0;
+    color: #ff3232;
+    border-radius: 25px;
+    text-shadow: none;
+    box-shadow: 3px 3px rgba(0, 0, 0, 0.16);
+    display: inline-block;
+    background-color: white;
+    padding: 5px 10px 5px 10px; }
 
 /* card */
 main {
   display: table;
   position: relative;
-  top: 5vh;
+  top: 70px;
   left: 0;
   height: 100%;
   width: 100%; }
+  @media (max-width: 767px) {
+    main {
+      top: 70px; } }
   main .container {
     width: 100%;
     padding: 0;
     display: table; }
 
 .about-lab-card {
-  width: 50vw;
+  width: 40vw;
   color: white;
   margin: 0 auto;
   padding: 20px;
   text-align: center;
   border-radius: 25px;
-  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
   background: linear-gradient(45deg, #03a9f4, #0288d1); }
+  @media (max-width: 767px) {
+    .about-lab-card {
+      width: 90vw;
+      padding: 10px; } }
+  @media (min-width: 768px) {
+    .about-lab-card {
+      width: 60vw; } }
+  @media (min-width: 1200px) {
+    .about-lab-card {
+      width: 40vw; } }
   .about-lab-card img {
     width: 50px; }
+    @media (max-width: 767px) {
+      .about-lab-card img {
+        width: 30px; } }
   .about-lab-card h1.room-name {
     margin: 0.5rem;
-    font-size: 2rem;
+    font-size: 2.4rem;
     text-shadow: 3px 3px rgba(0, 0, 0, 0.16); }
+    @media (max-width: 767px) {
+      .about-lab-card h1.room-name {
+        font-size: 1.6rem; } }
   .about-lab-card h2.amount-people {
     margin: 0.5rem;
+    padding-top: 0.4rem;
     font-size: 1.8rem;
     text-shadow: 3px 3px rgba(0, 0, 0, 0.16); }
+    @media (max-width: 767px) {
+      .about-lab-card h2.amount-people {
+        font-size: 1.1rem; } }
     .about-lab-card h2.amount-people p {
       margin: 0;
       color: #1261A0;
@@ -141,35 +220,72 @@ main {
 /* time picker */
 .time-picker-wrapper {
   width: 100%;
-  padding: 1rem 0 1rem 0;
+  padding: 1rem 0;
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
-  margin: 1.5rem 0 1.5rem 0;
+  margin: 1.5rem 0;
   background-color: white; }
   .time-picker-wrapper h2.title {
-    margin: 1rem 0 1rem 25vw;
+    margin: 1rem 0 1rem 30vw;
     font-size: 1.8rem; }
+    @media (max-width: 767px) {
+      .time-picker-wrapper h2.title {
+        margin: 0.5rem 0 0.5rem 5vw;
+        font-size: 1.5rem; } }
+    @media (min-width: 768px) {
+      .time-picker-wrapper h2.title {
+        margin: 0.5rem 0 0.5rem 20vw; } }
+    @media (min-width: 1200px) {
+      .time-picker-wrapper h2.title {
+        margin: 1rem 0 1rem 30vw; } }
   .time-picker-wrapper p {
-    width: 50vw;
+    width: 40vw;
     display: none;
     color: #ff3232;
     padding: 0.3rem;
-    font-size: 1rem;
+    font-size: 1.4rem;
     text-align: center;
     border-radius: 10px;
-    margin: 0.5rem auto 0.5rem auto;
+    margin: 0.5rem auto;
     background-color: #ffe5e5; }
-
+    @media (max-width: 767px) {
+      .time-picker-wrapper p {
+        width: 90vw;
+        font-size: 1rem; } }
+    @media (min-width: 768px) {
+      .time-picker-wrapper p {
+        width: 60vw; } }
+    @media (min-width: 1200px) {
+      .time-picker-wrapper p {
+        width: 40vw; } }
 .time-picker {
-  margin-left: 25vw;
+  margin-left: 30vw;
   line-height: 0.5rem; }
+  @media (max-width: 767px) {
+    .time-picker {
+      margin-left: 5vw; } }
+  @media (min-width: 768px) {
+    .time-picker {
+      margin-left: 20vw; } }
+  @media (min-width: 1200px) {
+    .time-picker {
+      margin-left: 30vw; } }
   .time-picker .col {
     position: relative;
-    max-width: 50vw;
+    max-width: 40vw;
     transition: transform 0.5s ease; }
+    @media (max-width: 767px) {
+      .time-picker .col {
+        max-width: 90vw; } }
+    @media (min-width: 768px) {
+      .time-picker .col {
+        max-width: 60vw; } }
+    @media (min-width: 1200px) {
+      .time-picker .col {
+        max-width: 40vw; } }
   .time-picker label {
     margin: 0.5rem;
     color: #1261A0;
-    font-size: 25px;
+    font-size: 1.5rem;
     font-weight: 500;
     text-align: center;
     border-radius: 50px;
@@ -179,9 +295,15 @@ main {
     border: 1px solid #1261A0;
     background-color: white;
     padding: 5px 10px 5px 10px; }
+    @media (max-width: 767px) {
+      .time-picker label {
+        font-size: 1.2rem; } }
     .time-picker label i.fa-times {
       font-size: 1.4rem;
       margin-left: 5px; }
+      @media (max-width: 767px) {
+        .time-picker label i.fa-times {
+          font-size: 1.2rem; } }
   .time-picker .btn-check + .btn-outline-primary {
     color: #1261A0;
     background-color: white;
@@ -200,13 +322,23 @@ main {
   display: table;
   margin: 0 auto; }
   .select-time input[type=time] {
-    width: 30vw;
+    width: 10vw;
     display: none;
-    font-size: 1.2rem;
+    font-size: 1.3rem;
     border-radius: 50px;
     font-family: "Poppins", "Mitr", sans-serif;
     margin: 1rem auto 1rem auto;
     box-shadow: 3px 3px rgba(0, 0, 0, 0.16); }
+    @media (max-width: 767px) {
+      .select-time input[type=time] {
+        width: 40vw;
+        font-size: 1rem; } }
+    @media (min-width: 768px) {
+      .select-time input[type=time] {
+        width: 20vw; } }
+    @media (min-width: 1200px) {
+      .select-time input[type=time] {
+        width: 10vw; } }
     .select-time input[type=time]:focus {
       outline: none;
       box-shadow: none; }
@@ -214,8 +346,20 @@ main {
 /* check in button */
 .checkin-btn {
   display: table;
-  font-size: 1.3rem;
+  font-size: 1.4rem;
   margin: 1rem auto 1rem auto;
   background-color: #00c853; }
+  @media (max-width: 767px) {
+    .checkin-btn {
+      width: 90vw;
+      font-size: 1.2rem; } }
+  @media (min-width: 768px) {
+    .checkin-btn {
+      width: 60vw; } }
+  @media (min-width: 1200px) {
+    .checkin-btn {
+      width: 40vw; } }
+  .checkin-btn:hover {
+    background-color: #00af48; }
 
 /*# sourceMappingURL=lab_checkin.css.map */
